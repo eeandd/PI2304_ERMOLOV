@@ -29,19 +29,19 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void incrementCounter() {
     setState(() {
       _counter++;
     });
   }
 
-  void _decrementCounter() {
+  void decrementCounter() {
     setState(() {
       _counter--;
     });
   }
 
-  void _resetCounter() {
+  void resetCounter() {
     setState(() {
       _counter = 0;
     });
@@ -69,19 +69,19 @@ class _MyHomePageState extends State<MyHomePage> {
               spacing: 10,
               children: [
                 FilledButton(
-                  onPressed: _decrementCounter,
+                  onPressed: decrementCounter,
                   style: FilledButton.styleFrom(backgroundColor: Colors.red),
                   child: const Icon(Icons.remove),
                 ),
                 FilledButton(
-                  onPressed: _incrementCounter,
+                  onPressed: incrementCounter,
                   style: FilledButton.styleFrom(backgroundColor: Colors.green),
                   child: const Icon(Icons.add),
                 ),
               ],
             ),
             TextButton(
-              onPressed: _resetCounter,
+              onPressed: resetCounter,
               style: TextButton.styleFrom(foregroundColor: Colors.grey),
               child: Text("Сбросить"),
             ),
