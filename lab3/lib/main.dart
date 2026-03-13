@@ -41,6 +41,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _resetCounter() {
+    setState(() {
+      _counter = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +79,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Icon(Icons.add),
                 ),
               ],
+            ),
+            TextButton(
+              onPressed: _resetCounter,
+              style: TextButton.styleFrom(foregroundColor: Colors.grey),
+              child: Text("Сбросить"),
             ),
           ],
         ),
