@@ -35,6 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,12 +63,12 @@ class _MyHomePageState extends State<MyHomePage> {
               spacing: 10,
               children: [
                 FilledButton(
-                  onPressed: () {},
+                  onPressed: _decrementCounter,
                   style: FilledButton.styleFrom(backgroundColor: Colors.red),
                   child: const Icon(Icons.remove),
                 ),
                 FilledButton(
-                  onPressed: () {},
+                  onPressed: _incrementCounter,
                   style: FilledButton.styleFrom(backgroundColor: Colors.green),
                   child: const Icon(Icons.add),
                 ),
