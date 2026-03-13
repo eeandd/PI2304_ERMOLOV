@@ -52,6 +52,22 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            Row(
+              mainAxisAlignment: .center,
+              spacing: 10,
+              children: [
+                FilledButton(
+                  onPressed: () {},
+                  style: FilledButton.styleFrom(backgroundColor: Colors.red),
+                  child: const Icon(Icons.remove),
+                ),
+                FilledButton(
+                  onPressed: () {},
+                  style: FilledButton.styleFrom(backgroundColor: Colors.green),
+                  child: const Icon(Icons.add),
+                ),
+              ],
+            ),
           ],
         ),
       ),
