@@ -74,6 +74,54 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text('26', style: TextStyle(fontSize: 20)),
                     ],
                   ),
+                  SizedBox(height: 28),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Icon(Icons.phone, color: Colors.green, size: 32),
+                          SizedBox(height: 4),
+                          Text(
+                            'ПОЗВОНИТЬ',
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Icon(Icons.near_me, color: Colors.green, size: 32),
+                          SizedBox(height: 4),
+                          Text(
+                            'МАРШРУТ',
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Icon(Icons.share, color: Colors.green, size: 32),
+                          SizedBox(height: 4),
+                          Text(
+                            'ПОДЕЛИТЬСЯ',
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
