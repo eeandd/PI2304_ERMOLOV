@@ -27,6 +27,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _isLiked = false;
+  int _likesCount = 26;
+
+  void _toggleLike() {
+    setState(() {
+      if (_isLiked) {
+        _likesCount--;
+      } else {
+        _likesCount++;
+      }
+      _isLiked = !_isLiked;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,9 +83,24 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         ),
                       ),
-                      Icon(Icons.favorite, color: Colors.red, size: 28),
-                      SizedBox(width: 4),
-                      Text('26', style: TextStyle(fontSize: 20)),
+                      InkWell(
+                        onTap: _toggleLike,
+                        borderRadius: BorderRadius.circular(20),
+                        child: Row(
+                          children: [
+                            Icon(
+                              _isLiked ? Icons.favorite : Icons.favorite_border,
+                              color: Colors.red,
+                              size: 28,
+                            ),
+                            SizedBox(width: 4),
+                            Text(
+                              '$_likesCount',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(height: 28),
