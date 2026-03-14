@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _isLiked = false;
   int _likesCount = 26;
 
-  void _toggleLike() {
+  void toggleLike() {
     setState(() {
       if (_isLiked) {
         _likesCount--;
@@ -39,6 +41,27 @@ class _MyHomePageState extends State<MyHomePage> {
       }
       _isLiked = !_isLiked;
     });
+  }
+
+  Future<void> openPhone() async {
+    final Uri launchUri = Uri(scheme: 'tel', path: '+79892830260');
+    await launchUrl(launchUri);
+  }
+
+  Future<void> openMaps() async {
+    final Uri mapUri = Uri.parse(
+      'geo:0,0?q=45.0502933,38.9207626(Общежитие 20)',
+    );
+
+    await launchUrl(mapUri, mode: LaunchMode.externalApplication);
+  }
+
+  Future<void> openShareDialog() async {
+    SharePlus.instance.share(
+      ShareParams(
+        text: 'Общежитие №20 КубГАУ\nАдрес: Краснодар, ул. Калинина, 13к20',
+      ),
+    );
   }
 
   @override
@@ -84,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       InkWell(
-                        onTap: _toggleLike,
+                        onTap: toggleLike,
                         borderRadius: BorderRadius.circular(20),
                         child: Row(
                           children: [
@@ -107,47 +130,65 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        children: [
-                          Icon(Icons.phone, color: Colors.green, size: 32),
-                          SizedBox(height: 4),
-                          Text(
-                            'ПОЗВОНИТЬ',
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                      InkWell(
+                        onTap: () {
+                          openPhone();
+                        },
+                        borderRadius: BorderRadius.circular(12),
+                        child: Column(
+                          children: [
+                            Icon(Icons.phone, color: Colors.green, size: 32),
+                            SizedBox(height: 4),
+                            Text(
+                              'ПОЗВОНИТЬ',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          Icon(Icons.near_me, color: Colors.green, size: 32),
-                          SizedBox(height: 4),
-                          Text(
-                            'МАРШРУТ',
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                      InkWell(
+                        onTap: () {
+                          openMaps();
+                        },
+                        borderRadius: BorderRadius.circular(12),
+                        child: Column(
+                          children: [
+                            Icon(Icons.near_me, color: Colors.green, size: 32),
+                            SizedBox(height: 4),
+                            Text(
+                              'МАРШРУТ',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          Icon(Icons.share, color: Colors.green, size: 32),
-                          SizedBox(height: 4),
-                          Text(
-                            'ПОДЕЛИТЬСЯ',
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+                      InkWell(
+                        onTap: () {
+                          openShareDialog();
+                        },
+                        borderRadius: BorderRadius.circular(12),
+                        child: Column(
+                          children: [
+                            Icon(Icons.share, color: Colors.green, size: 32),
+                            SizedBox(height: 4),
+                            Text(
+                              'ПОДЕЛИТЬСЯ',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
