@@ -32,14 +32,21 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _isLiked = false;
   int _likesCount = 26;
 
+  int calculateLikesCount(bool isLiked, int likesCount) {
+    return isLiked ? likesCount - 1 : likesCount + 1;
+  }
+
+  bool calculateIsLiked(bool isLiked) {
+    return !isLiked;
+  }
+
   void toggleLike() {
+    final newLikesCount = calculateLikesCount(_isLiked, _likesCount);
+    final newIsLiked = calculateIsLiked(_isLiked);
+
     setState(() {
-      if (_isLiked) {
-        _likesCount--;
-      } else {
-        _likesCount++;
-      }
-      _isLiked = !_isLiked;
+      _likesCount = newLikesCount;
+      _isLiked = newIsLiked;
     });
   }
 
