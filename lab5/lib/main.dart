@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'simple_list.dart';
+import 'infinity_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.green,
         title: Text(widget.title, style: TextStyle(color: Colors.white)),
       ),
-      body: SimpleList(),
+      body: InfinityList(),
     );
   }
 }
