@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'simple_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,15 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.green,
         title: Text(widget.title, style: TextStyle(color: Colors.white)),
       ),
-      body: ListView(
-        children: const [
-          Text('0000'),
-          Divider(),
-          Text('0001'),
-          Divider(),
-          Text('0010'),
-        ],
-      ),
+      body: SimpleList(),
     );
   }
 }
