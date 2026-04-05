@@ -5,15 +5,25 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Возвращение значения')),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text(
+          'Возвращение значения',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue,
+      ),
       body: Center(
-        child: ElevatedButton(
+        child: FilledButton(
           onPressed: () async {
             final result = await Navigator.pushNamed(context, '/second');
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text('$result')));
+            if (result != null) {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text('$result')));
+            }
           },
+          style: FilledButton.styleFrom(backgroundColor: Colors.blue),
           child: const Text('Приступить к выбору...'),
         ),
       ),
@@ -27,23 +37,40 @@ class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Выберите любой вариант')),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text(
+          'Выберите любой вариант',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context, 'Да');
-              },
-              child: const Text('Да'),
+            SizedBox(
+              width: 100,
+              child: FilledButton(
+                onPressed: () {
+                  Navigator.pop(context, 'Да');
+                },
+                style: FilledButton.styleFrom(backgroundColor: Colors.blue),
+                child: const Text('Да'),
+              ),
             ),
+
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context, 'Нет');
-              },
-              child: const Text('Нет'),
+            SizedBox(
+              width: 100,
+              child: FilledButton(
+                onPressed: () {
+                  Navigator.pop(context, 'Нет');
+                },
+                style: FilledButton.styleFrom(backgroundColor: Colors.blue),
+                child: const Text('Нет'),
+              ),
             ),
           ],
         ),
@@ -55,6 +82,7 @@ class SecondScreen extends StatelessWidget {
 void main() {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (BuildContext context) => const MainScreen(),
