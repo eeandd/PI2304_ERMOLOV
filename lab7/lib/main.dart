@@ -8,8 +8,11 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Возвращение значения')),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/second');
+          onPressed: () async {
+            final result = await Navigator.pushNamed(context, '/second');
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text('$result')));
           },
           child: const Text('Приступить к выбору...'),
         ),
@@ -31,14 +34,14 @@ class SecondScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(context, 'Да');
               },
               child: const Text('Да'),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(context, 'Нет');
               },
               child: const Text('Нет'),
             ),
