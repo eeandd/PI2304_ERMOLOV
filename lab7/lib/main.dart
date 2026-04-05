@@ -9,10 +9,7 @@ class MainScreen extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SecondScreen()),
-            );
+            Navigator.pushNamed(context, '/second');
           },
           child: const Text('Приступить к выбору...'),
         ),
@@ -32,9 +29,19 @@ class SecondScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: () {}, child: const Text('Да')),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Да'),
+            ),
             SizedBox(height: 20),
-            ElevatedButton(onPressed: () {}, child: const Text('Нет')),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Нет'),
+            ),
           ],
         ),
       ),
