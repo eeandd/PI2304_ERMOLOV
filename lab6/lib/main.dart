@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyForm extends StatefulWidget {
   const MyForm({Key? key}) : super(key: key);
@@ -31,6 +32,10 @@ class MyFormState extends State {
                     validator: (value) {
                       if (value!.isEmpty) return 'Задайте ширину';
                     },
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                    ],
                   ),
                 ),
               ],
@@ -46,6 +51,10 @@ class MyFormState extends State {
                     validator: (value) {
                       if (value!.isEmpty) return 'Задайте высоту';
                     },
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+                    ],
                   ),
                 ),
               ],
@@ -69,9 +78,10 @@ class MyFormState extends State {
                 }
               },
               style: FilledButton.styleFrom(backgroundColor: Colors.blue),
-              child: const Text('Вычислить'),
+              child: const Text('Вычислить', style: TextStyle(fontSize: 20)),
             ),
-            Text(result),
+            const SizedBox(height: 20.0),
+            Text(result, style: TextStyle(fontSize: 24)),
           ],
         ),
       ),
