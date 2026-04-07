@@ -4,10 +4,12 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_svg/flutter_svg.dart';
 
 Future<List<Photo>> fetchPhotos(http.Client client) async {
   final response = await client.get(
     Uri.parse('https://jsonplaceholder.typicode.com/photos?_limit=50'),
+    headers: {'Accept': 'application/json', 'User-Agent': 'Mozilla/5.0'},
   );
   return compute(parsePhotos, response.body);
 }
@@ -15,6 +17,15 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
 List<Photo> parsePhotos(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
   return parsed.map<Photo>((json) => Photo.fromJson(json)).toList();
+}
+
+String getColorFromUri(String url) {
+  final uri = Uri.parse(url);
+  return uri.pathSegments.last;
+}
+
+Color parseHexColor(String hex) {
+  return Color(int.parse('FF$hex', radix: 16));
 }
 
 class Photo {
@@ -40,8 +51,6 @@ class Photo {
       thumbnailUrl: json['thumbnailUrl'] as String,
     );
   }
-
-  String get picsumThumbnailUrl => 'https://picsum.photos/id/$id/150/150';
 }
 
 class PhotosList extends StatelessWidget {
@@ -56,7 +65,14 @@ class PhotosList extends StatelessWidget {
       ),
       itemCount: photos.length,
       itemBuilder: (context, index) {
-        return Image.network(photos[index].picsumThumbnailUrl);
+        // return Container(
+        //   color: parseHexColor(getColorFromUri(photos[index].thumbnailUrl)),
+        //   width: 150,
+        //   height: 150,
+        // );
+        return SvgPicture.network(
+          'https://www.thecolorapi.com/id?format=svg&hex=${getColorFromUri(photos[index].thumbnailUrl)}',
+        );
       },
     );
   }
