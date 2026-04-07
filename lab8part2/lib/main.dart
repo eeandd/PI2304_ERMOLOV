@@ -97,7 +97,7 @@ class NewsList extends StatelessWidget {
                           ),
                           Divider(),
                           Text(
-                            Bidi.stripHtmlIfNeeded(news[index].detail_text),
+                            Bidi.stripHtmlIfNeeded(news[index].preview_text),
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.justify,
