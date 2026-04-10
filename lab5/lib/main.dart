@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Список элементов',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.white)),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+      ),
       home: const MyHomePage(title: 'Список элементов'),
     );
   }
@@ -38,13 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
     switch (selected) {
       case 'infinity':
-        currentWidget = InfinityList();
+        currentWidget = const InfinityList();
         break;
       case 'math':
-        currentWidget = InfinityMathList();
+        currentWidget = const InfinityMathList();
         break;
       default:
-        currentWidget = SimpleList();
+        currentWidget = const SimpleList();
     }
 
     return Scaffold(
