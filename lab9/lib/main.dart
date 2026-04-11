@@ -1,65 +1,44 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
+import 'classes/Machine.dart';
 
 void main() {
-  runApp(const MyApp());
-}
+  var machine = Machine(100, 50, 200, 0);
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  while (true) {
+    print('\nВыберите команду:');
+    print('1 - Добавить ресурс');
+    print('2 - Приготовить кофе');
+    print('0 - Выход');
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
+    String? command = stdin.readLineSync();
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+    switch (command) {
+      case '1':
+        print('Какой ресурс добавить? (coffeeBeans / milk / water / cash)');
+        String? type = stdin.readLineSync();
 
-  final String title;
+        print('Введите количество:');
+        int value = int.parse(stdin.readLineSync()!);
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+        machine.setResource(type!, machine.getResource(type) + value);
+        print('Ресурс обновлен');
+        break;
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+      case '2':
+        if (machine.isAvailableResources()) {
+          machine.makingCoffee();
+          print('Кофе приготовлен');
+        } else {
+          print('Недостаточно ресурсов');
+        }
+        break;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+      case '0':
+        print('Выход');
+        return;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+      default:
+        print('Неверная команда');
+    }
   }
 }
